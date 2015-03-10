@@ -1,13 +1,14 @@
 {
   "name": "materia",
   "version": "0.0.0",
-  "main": "chat.html",
+  "main": "app.html",
   "window": {
     "toolbar": true,
     "width": 660,
     "height": 500
   },
   "dependencies": {
+    "js-yaml": "^3.2.7",
     "socket.io-client": "~1.3.4"
   }
 }
