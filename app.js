@@ -17,9 +17,26 @@ var client = new Client({
 client.connect();
 
 client.on('connect', function() {
-    console.log('connected!')
-})
+
+    client.rooms.get({ users: true }, function(rooms) {
+
+        console.log(rooms);
+
+    });
+
+    client.rooms.create({
+        name: 'blah',
+        slug: 'bleh'
+    }, function(room) {
+
+        console.log(room);
+
+    });
+
+});
 
 client.on('error', function(err) {
-    console.log(err)
-})
+
+    console.log(err);
+
+});
