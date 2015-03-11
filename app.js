@@ -33,12 +33,24 @@ client.on('connect', function() {
 
         var id = rooms[0].id;
 
+        client.rooms.join(id, function(room) {
+
+            console.log('Joined ' + room.name);
+
+        });
+
         client.messages.create({
             room: id,
             text: 'blah blah blah'
         }, function(message) {
 
             console.log(message);
+
+        });
+
+        client.rooms.leave(id, function() {
+
+            console.log('Left ' + id);
 
         });
 
