@@ -18,18 +18,29 @@ client.connect();
 
 client.on('connect', function() {
 
-    client.rooms.get({ users: true }, function(rooms) {
-
-        console.log(rooms);
-
-    });
-
     client.rooms.create({
         name: 'blah',
         slug: 'bleh'
     }, function(room) {
 
         console.log(room);
+
+    });
+
+    client.rooms.get({ users: true }, function(rooms) {
+
+        console.log(rooms);
+
+        var id = rooms[0].id;
+
+        client.messages.create({
+            room: id,
+            text: 'blah blah blah'
+        }, function(message) {
+
+            console.log(message);
+
+        });
 
     });
 
