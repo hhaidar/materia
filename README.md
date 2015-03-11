@@ -1,1 +1,1 @@
-![MATERIA](http://i.imgur.com/WDZaWY9.png)
+![MATERIA](http://i.imgur.com/jY8Wksi.png)
