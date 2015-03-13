@@ -1,6 +1,6 @@
 'use strict';
 
-require('nw.gui').Window.get().showDevTools()
+// require('nw.gui').Window.get().showDevTools()
 
 var fs = require('fs'),
     yaml = require('js-yaml');
