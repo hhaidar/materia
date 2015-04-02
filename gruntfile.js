@@ -3,7 +3,8 @@ module.exports = function(grunt) {
         less: {
             main: {
                 files: {
-                    'assets/css/style.css': 'assets/less/style.less'
+                    'assets/css/style.css': 'assets/less/style.less',
+                    'assets/css/vendor.css': 'assets/less/vendor.less'
                 }
             }
         },
