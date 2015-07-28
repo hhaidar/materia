@@ -1,33 +1,37 @@
 'use strict';
 
-var app = require('app'),
-    BrowserWindow = require('browser-window');
+require('babel/register');
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the javascript object is GCed.
-var mainWindow = null;
+var React = require('react'),
+    fs = require('fs'),
+    yaml = require('js-yaml');
 
-app.on('window-all-closed', function() {
-    if (process.platform !== 'darwin') {
-        app.quit();
-    }
+var App =require('./lib/components/app');
+
+var Client = require('./lib/client');
+
+var settings = yaml.safeLoad(fs.readFileSync('settings.yml', 'utf8'));
+
+var client = new Client({
+    url: settings.url,
+    token: settings.token
 });
 
-app.on('ready', function() {
+client.connect();
 
-    mainWindow = new BrowserWindow({
-        width: 800, height: 600
+client.on('connect', function() {
+    client.rooms.get({
+        users: true
+    }, function(rooms) {
+        console.log(rooms);
     });
-
-    mainWindow.loadUrl('file://' + __dirname + '/app.html');
-
-    mainWindow.openDevTools();
-
-    mainWindow.on('closed', function() {
-        // Dereference the window object, usually you would store windows
-        // in an array if your app supports multi windows, this is the time
-        // when you should delete the corresponding element.
-        mainWindow = null;
-    });
-
 });
+
+client.on('error', function(err) {
+    console.log(err);
+});
+
+React.render(
+    <App />,
+    document.querySelector('body')
+);

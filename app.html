@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/vendor.css" />
         <link rel="stylesheet" href="assets/css/style.css" />
-        <script type="text/javascript" src="assets/app.js"></script>
     </head>
     <body>
         <div class="lcb-client">
@@ -148,5 +147,11 @@
         </div>
     </li>
 </script>
+        <script type="text/javascript">
+            window.onload = function() {
+                require('babel/register')();
+                require('./app');
+            };
+        </script>
     </body>
 </html>
