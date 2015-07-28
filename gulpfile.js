@@ -7,7 +7,7 @@ gulp.task('default', function () {
 
     electron.start();
 
-    gulp.watch('app.js', electron.restart);
+    gulp.watch('index.js', electron.restart);
 
     gulp.watch(['app.js', 'app.html'], electron.reload);
 

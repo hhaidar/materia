@@ -32,6 +32,6 @@ client.on('error', function(err) {
 });
 
 React.render(
-    <App />,
+    React.createElement(App),
     document.querySelector('body')
 );
