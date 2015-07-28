@@ -1,65 +1,33 @@
 'use strict';
 
-// require('nw.gui').Window.get().showDevTools()
+var app = require('app'),
+    BrowserWindow = require('browser-window');
 
-var fs = require('fs'),
-    yaml = require('js-yaml');
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the javascript object is GCed.
+var mainWindow = null;
 
-var Client = require('./lib/client');
-
-var settings = yaml.safeLoad(fs.readFileSync('settings.yml', 'utf8'));
-
-var client = new Client({
-    url: settings.url,
-    token: settings.token
+app.on('window-all-closed', function() {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
 });
 
-client.connect();
+app.on('ready', function() {
 
-client.on('connect', function() {
-
-    client.rooms.create({
-        name: 'blah',
-        slug: 'bleh'
-    }, function(room) {
-
-        console.log(room);
-
+    mainWindow = new BrowserWindow({
+        width: 800, height: 600
     });
 
-    client.rooms.get({ users: true }, function(rooms) {
+    mainWindow.loadUrl('file://' + __dirname + '/app.html');
 
-        console.log(rooms);
+    mainWindow.openDevTools();
 
-        var id = rooms[0].id;
-
-        client.rooms.join(id, function(room) {
-
-            console.log('Joined ' + room.name);
-
-        });
-
-        client.messages.create({
-            room: id,
-            text: 'blah blah blah'
-        }, function(message) {
-
-            console.log(message);
-
-        });
-
-        client.rooms.leave(id, function() {
-
-            console.log('Left ' + id);
-
-        });
-
+    mainWindow.on('closed', function() {
+        // Dereference the window object, usually you would store windows
+        // in an array if your app supports multi windows, this is the time
+        // when you should delete the corresponding element.
+        mainWindow = null;
     });
-
-});
-
-client.on('error', function(err) {
-
-    console.log(err);
 
 });
