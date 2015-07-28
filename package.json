@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "main": "app.js",
   "dependencies": {
+    "js-yaml": "^3.3.1",
+    "socket.io-client": "^1.3.6"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
