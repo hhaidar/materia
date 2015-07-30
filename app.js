@@ -21,12 +21,11 @@ var client = new Client({
 var db = new PouchDB('materia');
 
 var stores = {
-    room: require('./lib/stores/room')(client, db)
+    rooms: require('./lib/stores/rooms')(client, db)
 };
 
 var App = require('./lib/components/app')(stores),
-    Room = require('./lib/components/room')(stores),
-    RoomsList = require('./lib/components/roomsList')(stores);
+    Room = require('./lib/components/room')(stores);
 
 Router.run(
     <Route handler={App}>

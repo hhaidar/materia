@@ -15,7 +15,7 @@ module.exports = function(stores) {
     return React.createClass({
 
         mixins: [
-            Reflux.connect(stores.room, 'rooms')
+            Reflux.connect(stores.rooms, 'rooms')
         ],
 
         childContextTypes: {
