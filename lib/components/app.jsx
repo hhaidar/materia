@@ -30,7 +30,7 @@ module.exports = function(stores) {
 
         render: function() {
             return (
-                <div>
+                <div className="lc-app">
                     <Sidebar rooms={this.state.rooms} />
                     <Main>
                         <RouteHandler />

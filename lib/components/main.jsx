@@ -12,7 +12,7 @@ module.exports = function() {
 
         render: function() {
             return (
-                <div>
+                <div className="lc-main">
                     {this.props.children}
                 </div>
             );

@@ -11,7 +11,7 @@ module.exports = function() {
     return React.createClass({
         render: function() {
             return (
-                <div>
+                <div className="lc-sidebar">
                     <List>
                         {this.props.rooms.map(function(room, i) {
                             return <ListItem
