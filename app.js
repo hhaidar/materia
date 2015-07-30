@@ -1,7 +1,5 @@
 'use strict';
 
-require('babel/register');
-
 var React = require('react'),
     fs = require('fs'),
     yaml = require('js-yaml'),
@@ -27,11 +25,12 @@ var stores = {
 };
 
 var App = require('./lib/components/app')(stores),
+    Room = require('./lib/components/room')(stores),
     RoomsList = require('./lib/components/roomsList')(stores);
 
 Router.run(
     <Route handler={App}>
-        <Route path="rooms" handler={RoomsList} />
+        <Route path="/" handler={Room} />
     </Route>,
     HashLocation,
     function(Root) {

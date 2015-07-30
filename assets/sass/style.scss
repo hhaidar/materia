@@ -20,5 +20,26 @@ body {
 }
 
 .lc-main {
-    flex: 1;
+    display: flex;
+    flex: 1 0 0;
+}
+
+.lc-room {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+}
+
+.lc-messages {
+    flex: 1 0 0;
+}
+
+.lc-entry {
+    background: #eee;
+    height: 80px;
+    display: flex;
+}
+
+.lc-entry-input {
+    width: 100%;
 }
