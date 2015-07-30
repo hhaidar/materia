@@ -13,6 +13,7 @@ module.exports = function(stores) {
         render: function() {
             return (
                 <List>
+                    <h2>Rooms</h2>
                     {this.props.rooms.map(function(room, i) {
                         return <ListItem
                             key={room.id}

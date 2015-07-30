@@ -7,7 +7,8 @@ var React = require('react'),
     mui = require('material-ui'),
     ThemeManager = new mui.Styles.ThemeManager();
 
-var Sidebar = require('./sidebar');
+var Sidebar = require('./sidebar')(),
+    Main = require('./main')();
 
 module.exports = function(stores) {
 
@@ -30,8 +31,10 @@ module.exports = function(stores) {
         render: function() {
             return (
                 <div>
-                    <Sidebar rooms={this.state.rooms} style="display: none;" />
-                    <RouteHandler/>
+                    <Sidebar rooms={this.state.rooms} />
+                    <Main>
+                        <RouteHandler />
+                    </Main>
                 </div>
             );
         }
