@@ -3,12 +3,13 @@
 require('babel/register');
 
 var React = require('react'),
-    Reflux = require('reflux'),
-    mui = require('material-ui'),
-    ThemeManager = new mui.Styles.ThemeManager(),
     fs = require('fs'),
     yaml = require('js-yaml'),
-    PouchDB = require('pouchdb');
+    PouchDB = require('pouchdb'),
+    Router = require('react-router'),
+    Route = Router.Route,
+    DefaultRoute = Router.DefaultRoute,
+    HashLocation = Router.HashLocation;
 
 var Client = require('./lib/client');
 
@@ -25,33 +26,15 @@ var stores = {
     room: require('./lib/stores/room')(client, db)
 };
 
-var Sidebar = require('./lib/components/sidebar');
+var App = require('./lib/components/app')(stores),
+    RoomsList = require('./lib/components/roomsList')(stores);
 
-var App = React.createClass({
-
-    mixins: [
-        Reflux.connect(stores.room, 'rooms')
-    ],
-
-    childContextTypes: {
-        muiTheme: React.PropTypes.object
-    },
-
-    getChildContext: function() {
-        return {
-            muiTheme: ThemeManager.getCurrentTheme()
-        };
-    },
-
-    render: function() {
-        return (
-            <Sidebar rooms={this.state.rooms} />
-        );
+Router.run(
+    <Route handler={App}>
+        <Route path="rooms" handler={RoomsList} />
+    </Route>,
+    HashLocation,
+    function(Root) {
+        React.render(<Root/>, document.body);
     }
-
-});
-
-React.render(
-    React.createElement(App),
-    document.querySelector('body')
 );

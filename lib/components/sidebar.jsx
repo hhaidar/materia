@@ -16,7 +16,7 @@ module.exports = React.createClass({
                         key={room.id}
                         primaryText={room.name}
                         secondaryText={room.description}
-                        secondaryTextLines={2} />
+                        secondaryTextLines={1} />
                 })}
             </List>
         );
