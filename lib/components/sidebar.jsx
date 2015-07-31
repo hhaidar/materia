@@ -3,6 +3,8 @@
 var React = require('react'),
     mui = require('material-ui');
 
+var RoomActions = require('../actions/room');
+
 var List = mui.List,
     ListItem = mui.ListItem;
 
@@ -15,6 +17,7 @@ module.exports = function() {
                     <List>
                         {this.props.rooms.map(function(room, i) {
                             return <ListItem
+                                onClick={RoomActions.switchRoom.bind(null, room.id)}
                                 key={room.id}
                                 primaryText={room.name}
                                 secondaryText={room.description}
@@ -24,7 +27,6 @@ module.exports = function() {
                 </div>
             );
         }
-
     });
 
 }

@@ -32,6 +32,8 @@ body {
 
 .lc-messages {
     flex: 1 0 0;
+    overflow-y: auto;
+    -webkit-transform: rotate3d(0, 0, 0);
 }
 
 .lc-entry {
