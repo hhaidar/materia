@@ -1,8 +1,9 @@
 'use strict';
 
 var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    electron = require('electron-connect').server.create();
+    sass = require('gulp-sass');
+
+var electron = require('electron-connect').server.create();
 
 gulp.task('default', function () {
 
@@ -10,7 +11,7 @@ gulp.task('default', function () {
 
     gulp.run(['sass']);
 
-    gulp.watch('./assets/sass/**/*.scss', ['sass'])
+    gulp.watch('./assets/sass/**/*.scss', ['sass']);
 
     gulp.watch('index.js', electron.restart);
 

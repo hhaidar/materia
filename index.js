@@ -1,8 +1,7 @@
 'use strict';
 
-require('babel/register');
-
 var app = require('app'),
+    path = require('path'),
     BrowserWindow = require('browser-window');
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -17,11 +16,13 @@ app.on('window-all-closed', function() {
 
 app.on('ready', function() {
 
+    var file = 'file://' + path.resolve(__dirname, '/app.html');
+
     mainWindow = new BrowserWindow({
         width: 800, height: 600
     });
 
-    mainWindow.loadUrl('file://' + __dirname + '/app.html');
+    mainWindow.loadUrl(file);
 
     mainWindow.openDevTools();
 

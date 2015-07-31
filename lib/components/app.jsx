@@ -7,38 +7,36 @@ var React = require('react'),
     mui = require('material-ui'),
     ThemeManager = new mui.Styles.ThemeManager();
 
-var Sidebar = require('./sidebar')(),
-    Main = require('./main')();
+var RoomStore = require('../stores/rooms');
 
-module.exports = function(stores) {
+var Sidebar = require('./sidebar'),
+    Main = require('./main');
 
-    return React.createClass({
+module.exports = React.createClass({
 
-        mixins: [
-            Reflux.connect(stores.rooms, 'rooms')
-        ],
+    mixins: [
+        Reflux.connect(RoomStore, 'rooms')
+    ],
 
-        childContextTypes: {
-            muiTheme: React.PropTypes.object
-        },
+    childContextTypes: {
+        muiTheme: React.PropTypes.object
+    },
 
-        getChildContext: function() {
-            return {
-                muiTheme: ThemeManager.getCurrentTheme()
-            };
-        },
+    getChildContext: function() {
+        return {
+            muiTheme: ThemeManager.getCurrentTheme()
+        };
+    },
 
-        render: function() {
-            return (
-                <div className="lc-app">
-                    <Sidebar rooms={this.state.rooms} />
-                    <Main>
-                        <RouteHandler />
-                    </Main>
-                </div>
-            );
-        }
+    render: function() {
+        return (
+            <div className="lc-app">
+                <Sidebar rooms={this.state.rooms} />
+                <Main>
+                    <RouteHandler />
+                </Main>
+            </div>
+        );
+    }
 
-    });
-
-}
+});

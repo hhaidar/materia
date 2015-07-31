@@ -1,31 +1,13 @@
 'use strict';
 
 var React = require('react'),
-    fs = require('fs'),
-    yaml = require('js-yaml'),
-    PouchDB = require('pouchdb'),
-    Router = require('react-router'),
-    Route = Router.Route,
-    DefaultRoute = Router.DefaultRoute,
+    Router = require('react-router');
+
+var Route = Router.Route,
     HashLocation = Router.HashLocation;
 
-var Client = require('./lib/client');
-
-var settings = yaml.safeLoad(fs.readFileSync('settings.yml', 'utf8'));
-
-var client = new Client({
-    url: settings.url,
-    token: settings.token
-}).connect();
-
-var db = new PouchDB('materia');
-
-var stores = {
-    rooms: require('./lib/stores/rooms')(client, db)
-};
-
-var App = require('./lib/components/app')(stores),
-    Room = require('./lib/components/room')(stores);
+var App = require('./lib/components/app'),
+    Room = require('./lib/components/room');
 
 Router.run(
     <Route handler={App}>

@@ -1,23 +1,15 @@
 'use strict';
 
-var React = require('react'),
-    mui = require('material-ui');
+var React = require('react');
 
-var List = mui.List,
-    ListItem = mui.ListItem;
+module.exports = React.createClass({
 
-module.exports = function() {
+    render: function() {
+        return (
+            <div className="lc-main">
+                {this.props.children}
+            </div>
+        );
+    }
 
-    return React.createClass({
-
-        render: function() {
-            return (
-                <div className="lc-main">
-                    {this.props.children}
-                </div>
-            );
-        }
-
-    });
-
-}
+});
