@@ -16,13 +16,11 @@ app.on('window-all-closed', function() {
 
 app.on('ready', function() {
 
-    var file = 'file://' + path.resolve(__dirname, '/app.html');
-
     mainWindow = new BrowserWindow({
         width: 800, height: 600
     });
 
-    mainWindow.loadUrl(file);
+    mainWindow.loadUrl('file://' + __dirname + '/app.html');
 
     mainWindow.openDevTools();
 
