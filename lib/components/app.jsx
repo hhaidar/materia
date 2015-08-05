@@ -7,7 +7,8 @@ var React = require('react'),
     mui = require('material-ui'),
     ThemeManager = new mui.Styles.ThemeManager();
 
-var RoomStore = require('../stores/rooms');
+var RoomsStore = require('../stores/rooms'),
+    ConversationsStore = require('../stores/conversations');
 
 var Sidebar = require('./sidebar'),
     Main = require('./main');
@@ -15,7 +16,8 @@ var Sidebar = require('./sidebar'),
 module.exports = React.createClass({
 
     mixins: [
-        Reflux.connect(RoomStore, 'rooms')
+        Reflux.connect(RoomsStore, 'rooms'),
+        Reflux.connect(ConversationsStore, 'conversations')
     ],
 
     childContextTypes: {
@@ -33,7 +35,7 @@ module.exports = React.createClass({
             <div className="lc-app">
                 <Sidebar rooms={this.state.rooms} />
                 <Main>
-                    <RouteHandler />
+                    <RouteHandler conversations={this.state.conversations} />
                 </Main>
             </div>
         );
