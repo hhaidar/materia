@@ -16,7 +16,7 @@ module.exports = React.createClass({
                 <List>
                     {this.props.rooms.map(function(room, i) {
                         return <ListItem
-                            onClick={RoomActions.switchRoom.bind(null, room.id)}
+                            onClick={RoomActions.switch.bind(null, room.id)}
                             key={room.id}
                             primaryText={room.name}
                             secondaryText={room.description}
